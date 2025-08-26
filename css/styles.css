@@ -37,18 +37,44 @@
   text-align: center;
   background: radial-gradient(circle at top, #1a1f2b, #0d1117);
   color: var(--text);
+  margin-top: 80px;
 }
+
 .hero-container {
   max-width: 900px;
 }
+
 .hero h1 {
   font-size: 2.5rem;
   margin-bottom: 15px;
+  min-height: 60px; /* to avoid layout shift while typing */
 }
+
 .hero p.lead {
   font-size: 1.2rem;
   margin-bottom: 30px;
   color: #bbb;
+  transition: opacity 1s ease-in;
+}
+
+.hero-buttons .btn {
+  padding: 10px 20px;
+  font-size: 1rem;
+  margin: 0 10px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.btn.start {
+  background-color: #3b82f6;
+  color: white;
+}
+
+.btn.explore {
+  background-color: transparent;
+  border: 1px solid #3b82f6;
+  color: #3b82f6;
 }
 .cta-row {
   display: flex;
@@ -80,6 +106,39 @@
   background: var(--primary);
   color: white;
 }
+/* أنيمين */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
 
 /* Features */
 .features {
@@ -89,6 +148,7 @@
   padding: 60px 20px;
   background: var(--bg);
   color: var(--text);
+  margin-top: 80px;
 }
 .feature-card {
   background: var(--card-bg);
@@ -208,9 +268,10 @@ body{
   border: 1px solid #4a90e2;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  max-width: 100%; /* منع التجاوز */
-  vertical-align: top; /* ينزل جنب بعض */
-  white-space: nowrap; /* منع لف النصوص لو مش حابة */
+  max-width: 100%; 
+  vertical-align: top; 
+  white-space: nowrap; 
+  padding-bottom: 50px;
 }
 
 .info-box:hover {
@@ -245,13 +306,14 @@ body{
 .bottom-row {
   display: flex;
   justify-content: center;
+  border: bottom 1000px;
 }
 
 .centered-box {
-  display: inline-block; /* عشان ياخد حجم المحتوى */
+  display: inline-block; 
   max-width: 90%;
-  padding: 0 10px;
   text-align: center;
+  padding-bottom: 50px;
 }
 
 /* Responsive */
@@ -262,10 +324,10 @@ body{
   }
 
   .info-box {
-    display: block; /* يخليهم تحت بعض */
+    display: block; 
     width: auto;
     max-width: 100%;
-    white-space: normal; /* يسمح بالتفاف النص */
+    white-space: normal; 
   }
 
   .centered-box {
@@ -276,13 +338,12 @@ body{
 .info-box h3 {
   margin-bottom: 15px;
   font-size: 1.5em;
-  text-align: center; /* نخلي العنوان في الوسط */
-}
+  text-align: center; 
 
 .highlight {
-  display: inline-block; /* نخلي الـ span بلوك صغير عشان نتحكم */
-  width: 100%;           /* ياخد عرض كامل */
-  text-align: center;    /* نوسط الكلمة جواه */
+  display: inline-block; 
+  width: 100%;           
+  text-align: center;   
   color: #4a90e2;
   font-weight: bold;
   text-transform: uppercase;
@@ -301,15 +362,32 @@ body{
 
 }
 .stats-section {
-    background-color: #f0f4ff;
+  
     border: 1px solid #4a90e2;
     border-radius: 12px;
     padding: 30px 40px;
     max-width: 1000px;
-    margin: 40px auto;
     font-family: Arial, sans-serif;
     color: #12275e;
+    display: inline-block; 
+  background: linear-gradient(135deg, #1b2b45, #162238);
+  color: #ffffff;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  max-width: 100%; 
+  vertical-align: top; 
+  white-space: nowrap;
+  margin-top: 10px; 
+  margin-bottom: 100px; 
+
   }
+.mission-box, .vision-box, .goals-box, .info-box,.stats-section  {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: normal; 
+  max-width: 100%; 
+}
+
   .stats-container {
     display: flex;
     justify-content: space-between;
@@ -340,6 +418,8 @@ body{
     font-weight: 700;
     cursor: pointer;
     transition: background-color 0.3s;
+    position: relative;
+    left: -100px; 
   }
   .btn-more:hover {
     background-color:  #2a59ff;
@@ -355,9 +435,9 @@ body{
     flex: 1 1 45%;
     min-width: 140px;
     text-align: center;
-    justify-content: space-between; /* يخلي الرقم ع اليمين والنص ع الشمال */
+    justify-content: space-between; 
   align-items: center;
-  direction: ltr; /* نضمن الاتجاه الطبيعي */
+  direction: ltr; 
   }
   .live-badge {
     display: inline-block;
@@ -400,13 +480,6 @@ body{
 
     }
   }
- 
-
-
-
-
-
-
 /* RTL/LTR logical props */
 main, .site-header, .site-footer { padding-inline: clamp(16px, 4vw, 56px); }
 
@@ -545,7 +618,6 @@ input::placeholder{ color: color-mix(in oklab, var(--muted) 70%, transparent); }
 /* Larger text */
 .large-text{ --size: 1.125rem; --line: 1.7; }
 
-/* Dyslexia-friendly (approximate via spacing & simplified letterforms) */
 .dyslexia{
   letter-spacing: .6px;
   word-spacing: 2px;
@@ -566,7 +638,384 @@ input::placeholder{ color: color-mix(in oklab, var(--muted) 70%, transparent); }
 }
 
 /* Right-to-left adjustments using logical properties only.
-   We set [dir="rtl"] on <html> in JS; layout uses logical props so minimal overrides are needed.
 */
 [dir="rtl"] .brand-name{ letter-spacing: 0; }
 [dir="rtl"] .hero-content h1{ text-align: start; }
+/* ABOUT SECTION 
+/* الأساس */
+body {
+  background-color: #0d0d0d;
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial', sans-serif;
+
+}
+
+.hero-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #0d0d0d;
+  color: white;
+  padding: 60px;
+  border-radius: 30px;
+  max-width: 1200px;
+  margin: 80px auto;
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.05);
+  animation: fadeInUp 1s ease-in-out;
+  margin-top: 100px;
+}
+
+.hero-text {
+  flex: 1;
+  padding-right: 40px;
+  animation: slideInLeft 1s ease-in-out;
+}
+
+.hero-text h1 {
+  font-size: 3.5rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  line-height: 1.2;
+}
+
+.hero-text p {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: #ccc;
+}
+
+.hero-image {
+  flex: 1;
+  height: 400px;
+  background-color: #1a1a1a;
+  border-radius: 20px;
+  animation: slideInRight 1.2s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #888;
+  font-size: 1rem;
+  border: 1px dashed #444;
+}
+
+/* أنيميشن */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+/* Section background and font */
+.values-section {
+  background-color: #0d0d0d;
+  color: #fff;
+  padding: 60px 20px;
+  font-family: Arial, sans-serif;
+}
+
+/* Container centering */
+.values-container {
+  max-width: 1100px;
+  margin: auto;
+}
+
+/* Intro text */
+.values-intro {
+  color: #aaa;
+  font-size: 14px;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Section title */
+.values-title {
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+/* Section description */
+.values-description {
+  font-size: 18px;
+  color: #ccc;
+  margin-bottom: 50px;
+  line-height: 1.6;
+}
+
+/* Grid for the value boxes */
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+}
+
+/* Each value item box */
+.value-box {
+  background-color: #1a1a1a;
+  padding: 20px;
+  border-radius: 12px;
+  transition: transform 0.3s ease;
+}
+
+.value-box:hover {
+  transform: translateY(-5px);
+}
+
+/* Icon container */
+.value-icon {
+  width: 60px;
+  height: 60px;
+  margin-bottom: 15px;
+}
+
+/* Title of each value */
+.value-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #ffffff;
+}
+
+.value-text {
+  font-size: 16px;
+  color: #ccc;
+  line-height: 1.5;
+}
+
+body {
+  margin: 0;
+  background-color: #0a0706;
+  font-family: Arial, sans-serif;
+}
+
+.form-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.form-container {
+  width: 100%;
+  max-width: 800px;
+  padding: 40px 50px;
+  box-sizing: border-box;
+  border-top: 1px solid #19407f;
+  border-bottom: 1px solid #19407f;
+  background-color: #120e0d;
+  color: white;
+  animation: fadeInUp 0.7s ease forwards;
+  border-radius: 10px;
+}
+
+h1 {
+  margin-bottom: 25px;
+  font-weight: bold;
+  font-size: 2rem;
+  text-align: center;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 0.9rem;
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  box-sizing: border-box;
+  background: #1b1b1b;
+  color: #fff;
+}
+
+textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+/* كل اتنين جنب بعض */
+.form-row {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  flex: 1;
+}
+
+/* الزرار */
+button {
+  background-color: #775DAB;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  padding: 14px 25px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+  display: block;
+  margin: 0 auto;
+}
+
+button:hover {
+  background-color: #9674d3;
+  transform: scale(1.05);
+}
+
+/* Responsive: يرجع تحت بعض */
+@media (max-width: 768px) {
+  .form-row {
+    flex-direction: column;
+  }
+}
+
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.form-container {
+  width: 100%;
+  max-width: 100%;
+  padding: 40px 80px;
+  box-sizing: border-box;
+  background-color: #120e0d;
+  color: white;
+
+  border-radius: 20px;
+  border: 1px solid #1e90ff;
+  box-shadow: 0 0 20px #1e90ff66;
+
+  animation: fadeInUp 0.7s ease forwards;
+}
+.form-container {
+  margin-top: 60px; 
+}
+.form-container {
+  margin-bottom: 80px; 
+}
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Cairo', sans-serif;
+  background-color: #0e0e0e;
+  color: #fff;
+  padding: 40px 20px;
+}
+
+.container {
+  max-width: 900px;
+  margin: auto;
+}
+
+.page-title {
+  text-align: center;
+  margin-bottom: 40px;
+  font-size: 32px;
+  color: #4aa9ff;
+}
+
+.box {
+  border: 2px solid #2d8fff;
+  border-radius: 12px;
+  padding: 30px 25px;
+  margin-bottom: 30px;
+  background: #1a1a1a;
+  box-shadow: 0 0 15px rgba(0, 119, 255, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 25px rgba(0, 119, 255, 0.4);
+}
+
+.box h2 {
+  color: #50aaff;
+  font-size: 24px;
+  margin-bottom: 15px;
+
+}
+
+.box p {
+  font-size: 17px;
+  line-height: 1.8;
+  color: #ddd;
+}
+
+.list {
+  list-style: none;
+  padding-right: 0;
+}
+
+.list li {
+  margin-bottom: 10px;
+  padding-right: 10px;
+  border-right: 3px solid #4aa9ff;
+  color: #ccc;
+}
+
+button {
+  margin-top: 20px;
+  background-color: #0070f3;
+  border: none;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #005ac2;
+}
+.h1{
+  margin-top: 100px;
+}
+}
