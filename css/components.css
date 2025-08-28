@@ -1,0 +1,1438 @@
+/* Header Styles */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  backdrop-filter: blur(6px);
+  background: color-mix(in oklab, var(--bg) 70%, transparent);
+  border-bottom: 1px solid var(--border);
+}
+
+.topbar {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 16px;
+  align-items: center;
+  padding-block: 12px;
+}
+
+.brand .brand-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+.brand .logo {
+  height: 32px;
+  width: auto;
+  filter: drop-shadow(0 2px 0 rgba(0, 0, 0, .25));
+  object-fit: contain;
+}
+
+.primary-nav {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.nav-link {
+  color: var(--muted);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.nav-link:focus,
+.nav-link:hover {
+  color: var(--text);
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Accessibility-aware Button Styles */
+.button {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateY(0);
+  cursor: pointer;
+  font-weight: 600;
+  letter-spacing: 0.025em;
+}
+
+/* High contrast support */
+.high-contrast .button {
+  border-width: 2px;
+  font-weight: 700;
+}
+
+.high-contrast .button.solid {
+  background: var(--text);
+  color: #000;
+  border-color: var(--text);
+}
+
+.high-contrast .button.ghost {
+  border-color: var(--text);
+  color: var(--text);
+}
+
+.high-contrast .button.warn {
+  background: #d32f2f;
+  color: white;
+  border-color: #d32f2f;
+}
+
+/* Reduced motion support */
+.reduce-motion .button {
+  transition: none;
+  animation: none;
+}
+
+.reduce-motion .button:hover {
+  transform: none;
+}
+
+.reduce-motion .button:active {
+  transform: none;
+}
+
+.reduce-motion .button::before,
+.reduce-motion .button::after {
+  display: none;
+}
+
+/* Button hover effects (only when motion is allowed) */
+.button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.button:active {
+  transform: translateY(0);
+  transition: transform 0.1s ease;
+}
+
+/* Solid button animations */
+.button.solid {
+  background: var(--primary);
+  color: white;
+  border: 1px solid var(--primary);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.button.solid::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.6s;
+}
+
+.button.solid:hover::before {
+  left: 100%;
+}
+
+.button.solid:hover {
+  background: var(--brand);
+  border-color: var(--brand);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+}
+
+/* Ghost button animations */
+.button.ghost {
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--border);
+  position: relative;
+}
+
+.button.ghost::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background: var(--primary);
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: -1;
+}
+
+.high-contrast .button.ghost::before {
+  background: var(--focus);
+}
+
+.button.ghost:hover::before {
+  width: 100%;
+}
+
+.button.ghost:hover {
+  color: white;
+  border-color: var(--primary);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.reduce-motion .button.ghost:hover {
+  color: var(--text);
+}
+
+.high-contrast .button.ghost:hover {
+  color: var(--bg);
+  border-color: var(--bg);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Warn button animations */
+.button.warn {
+  background: var(--warn);
+  color: white;
+  border: 1px solid var(--warn);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.button.warn::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.3s, height 0.3s;
+}
+
+.button.warn:hover::before {
+  width: 200%;
+  height: 200%;
+}
+
+.button.warn:hover {
+  background: #ff5252;
+  border-color: #ff5252;
+  box-shadow: 0 8px 25px rgba(255, 107, 107, 0.3);
+}
+
+/* Button ripple effect on click (only when motion is allowed) */
+.button::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s, opacity 0.6s;
+  opacity: 0;
+}
+
+.button:active::after {
+  width: 300%;
+  height: 300%;
+  opacity: 1;
+  transition: 0s;
+}
+
+/* Button focus states */
+.button:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+  transform: translateY(-1px);
+}
+
+/* High contrast focus states */
+.high-contrast .button:focus-visible {
+  outline: 3px solid var(--text);
+  outline-offset: 3px;
+}
+
+/* Button loading state animation */
+.button.loading {
+  position: relative;
+  color: transparent;
+}
+
+.button.loading::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  margin: -10px 0 0 -10px;
+  border: 2px solid transparent;
+  border-top: 2px solid currentColor;
+  border-radius: 50%;
+  animation: buttonSpin 1s linear infinite;
+}
+
+/* Disable loading animation when motion is reduced */
+.reduce-motion .button.loading::before {
+  animation: none;
+}
+
+@keyframes buttonSpin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Button scale animation on mount (only when motion is allowed) */
+.button {
+  animation: buttonAppear 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.reduce-motion .button {
+  animation: none;
+}
+
+@keyframes buttonAppear {
+  0% {
+    opacity: 0;
+    transform: scale(0.8) translateY(10px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Button group animations */
+.button+.button {
+  animation-delay: 0.1s;
+}
+
+.button+.button+.button {
+  animation-delay: 0.2s;
+}
+
+/* Enhanced Language Switch */
+.lang-switch {
+  display: inline-flex;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  overflow: hidden;
+  background: var(--surface);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin: 8px 0;
+}
+
+/* High contrast language switch */
+.high-contrast .lang-switch {
+  border-width: 2px;
+  border-color: var(--text);
+}
+
+/* Dyslexia-friendly language switch */
+.dyslexia .lang-switch {
+  letter-spacing: 0.1em;
+}
+
+.lang-switch:hover {
+  border-color: var(--primary);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  transform: translateY(-1px);
+}
+
+.high-contrast .lang-switch:hover {
+  border-color: white;
+}
+
+/* Disable hover effects when motion is reduced */
+.reduce-motion .lang-switch:hover {
+  transform: none;
+}
+
+.lang-btn {
+  background: transparent;
+  color: var(--muted);
+  border: 0;
+  padding: .6rem .8rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  min-width: 44px;
+  text-align: center;
+}
+
+/* High contrast language buttons */
+.high-contrast .lang-btn {
+  font-weight: 800;
+}
+
+/* Dyslexia-friendly language buttons */
+.dyslexia .lang-btn {
+  letter-spacing: 0.1em;
+  word-spacing: 0.2em;
+}
+
+.lang-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transition: left 0.5s;
+}
+
+.lang-btn:hover::before {
+  left: 100%;
+}
+
+/* Disable hover effects when motion is reduced */
+.reduce-motion .lang-btn::before {
+  display: none;
+}
+
+.lang-btn[aria-pressed="true"] {
+  background: var(--primary);
+  color: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  transform: scale(1.05);
+  font-weight: 800;
+}
+
+.high-contrast .lang-btn[aria-pressed="true"] {
+  background: var(--focus);
+  color: var(--bg);
+}
+
+/* Disable scale effect when motion is reduced */
+.reduce-motion .lang-btn[aria-pressed="true"] {
+  transform: none;
+}
+
+.lang-btn:not([aria-pressed="true"]):hover {
+  color: var(--text);
+  background: var(--card);
+}
+
+/* Enhanced focus states for language buttons */
+.lang-btn:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+/* High contrast focus states */
+.high-contrast .lang-btn:focus-visible {
+  outline: 3px solid var(--text);
+  outline-offset: 3px;
+}
+
+.icon-btn {
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: .25rem .6rem;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+/* High contrast icon buttons */
+.high-contrast .icon-btn {
+  border-width: 2px;
+  font-weight: 700;
+}
+
+/* Dyslexia-friendly icon buttons */
+.dyslexia .icon-btn {
+  letter-spacing: 0.1em;
+  word-spacing: 0.2em;
+}
+
+.icon-btn::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: var(--primary);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.3s, height 0.3s;
+  opacity: 0.1;
+}
+
+.icon-btn:hover::before {
+  width: 100%;
+  height: 100%;
+}
+
+/* Disable hover effects when motion is reduced */
+.reduce-motion .icon-btn::before {
+  display: none;
+}
+
+.icon-btn:hover {
+  border-color: var(--primary);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Disable hover effects when motion is reduced */
+.reduce-motion .icon-btn:hover {
+  transform: none;
+}
+
+/* Enhanced focus states for icon buttons */
+.icon-btn:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+/* High contrast focus states */
+.high-contrast .icon-btn:focus-visible {
+  outline: 3px solid var(--text);
+  outline-offset: 3px;
+}
+
+/* Theme toggle button */
+.theme-toggle {
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: .45rem .6rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+/* High contrast theme toggle */
+.high-contrast .theme-toggle {
+  border-width: 2px;
+  font-weight: 700;
+}
+
+/* Dyslexia-friendly theme toggle */
+.dyslexia .theme-toggle {
+  letter-spacing: 0.1em;
+  word-spacing: 0.2em;
+}
+
+.theme-toggle::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transition: left 0.5s;
+}
+
+.theme-toggle:hover::before {
+  left: 100%;
+}
+
+/* Disable hover effects when motion is reduced */
+.reduce-motion .theme-toggle::before {
+  display: none;
+}
+
+.theme-toggle:hover {
+  background: var(--card);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Disable hover effects when motion is reduced */
+.reduce-motion .theme-toggle:hover {
+  transform: none;
+}
+
+.theme-toggle .icon {
+  font-size: 1rem;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.theme-toggle:hover .icon {
+  transform: rotate(15deg);
+}
+
+/* Disable icon rotation when motion is reduced */
+.reduce-motion .theme-toggle:hover .icon {
+  transform: none;
+}
+
+/* Enhanced focus states for theme toggle */
+.theme-toggle:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+/* High contrast focus states */
+.high-contrast .theme-toggle:focus-visible {
+  outline: 3px solid var(--text);
+  outline-offset: 3px;
+}
+
+/* Enhanced Kebab Menu */
+.kebab-btn {
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: .7rem .5rem;
+  cursor: pointer;
+  line-height: 1;
+  font-size: 20px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+/* High contrast kebab button */
+.high-contrast .kebab-btn {
+  border-width: 2px;
+  font-weight: 700;
+}
+
+/* Dyslexia-friendly kebab button */
+.dyslexia .kebab-btn {
+  letter-spacing: 0.1em;
+  word-spacing: 0.2em;
+}
+
+.kebab-btn::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: var(--primary);
+  opacity: 0.3;
+  border-radius: 15px;
+  transform: translate(-50%, -50%);
+  transition: width 0.3s, height 0.3s;
+}
+
+.high-contrast .kebab-btn::before {
+  background: var(--focus);
+}
+
+.kebab-btn:hover::before {
+  width: 100%;
+  height: 100%;
+}
+
+/* Disable hover effects when motion is reduced */
+.reduce-motion .kebab-btn::before {
+  display: none;
+}
+
+.kebab-btn:hover {
+  border-color: var(--primary);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.high-contrast .kebab-btn:hover {
+  border-color: var(--focus);
+}
+
+/* Disable hover effects when motion is reduced */
+.reduce-motion .kebab-btn:hover {
+  transform: none;
+}
+
+.kebab-btn[aria-expanded="true"] {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+}
+
+.high-contrast .kebab-btn[aria-expanded="true"] {
+  background: var(--focus);
+  color: #000;
+  border-color: #000;
+}
+
+/* Enhanced focus states for kebab button */
+.kebab-btn:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+/* High contrast focus states */
+.high-contrast .kebab-btn:focus-visible {
+  outline: 3px solid var(--text);
+  outline-offset: 3px;
+}
+
+/* Button pulse animation for important actions (only when motion is allowed) */
+.button.pulse {
+  animation: buttonPulse 2s infinite;
+}
+
+.reduce-motion .button.pulse {
+  animation: none;
+}
+
+@keyframes buttonPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(106, 167, 255, 0.7);
+  }
+
+  70% {
+    box-shadow: 0 0 0 10px rgba(106, 167, 255, 0);
+  }
+
+  100% {
+    box-shadow: 0 0 0 0 rgba(106, 167, 255, 0);
+  }
+}
+
+/* Button bounce animation for success states (only when motion is allowed) */
+.button.bounce {
+  animation: buttonBounce 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.reduce-motion .button.bounce {
+  animation: none;
+}
+
+@keyframes buttonBounce {
+
+  0%,
+  20%,
+  53%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+
+  40%,
+  43% {
+    transform: translateY(-8px);
+  }
+
+  70% {
+    transform: translateY(-4px);
+  }
+
+  90% {
+    transform: translateY(-2px);
+  }
+}
+
+.header-menu {
+  position: absolute;
+  right: 0;
+  margin-top: 8px;
+  min-width: 200px;
+  max-width: 250px;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: var(--surface);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12), 0 4px 16px rgba(0, 0, 0, 0.08);
+  padding: 12px;
+  z-index: 30;
+  opacity: 0;
+  transform: translateY(-10px) scale(0.95);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(8px);
+}
+
+.header-menu[hidden] {
+  display: none;
+}
+
+.header-menu:not([hidden]) {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.menu-section {
+  padding: 8px;
+  border-radius: 12px;
+  transition: background-color 0.2s ease;
+}
+
+.menu-section:hover {
+  background: var(--card);
+}
+
+.menu-section+.menu-section {
+  border-top: 1px solid var(--border);
+  margin-top: 8px;
+  padding-top: 12px;
+}
+
+.menu-item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  background: transparent;
+  border: 0;
+  color: var(--text);
+  padding: .75rem .8rem;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  font-weight: 500;
+}
+
+.menu-item:hover,
+.menu-item:focus-visible {
+  background: var(--card);
+  transform: translateX(4px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Professional Accessibility Panel */
+.a11y-panel {
+  border: none;
+  border-radius: 20px;
+  background: var(--surface);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25), 0 8px 32px rgba(0, 0, 0, 0.15);
+  padding: 0;
+  max-width: 480px;
+  width: 90vw;
+  backdrop-filter: blur(20px);
+  animation: slideInUp 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* High contrast accessibility panel */
+.high-contrast .a11y-panel {
+  border: 2px solid var(--text);
+  background: var(--bg);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8), 0 8px 32px rgba(0, 0, 0, 0.6);
+}
+
+/* Disable animation when motion is reduced */
+.reduce-motion .a11y-panel {
+  animation: none;
+}
+
+.a11y-panel::backdrop {
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(8px);
+}
+
+/* High contrast backdrop */
+.high-contrast .a11y-panel::backdrop {
+  background: rgba(0, 0, 0, 0.9);
+}
+
+.a11y-panel form {
+  padding: 0;
+}
+
+.a11y-panel h2 {
+  margin: 0;
+  padding: 24px 32px 16px;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text);
+  border-bottom: 1px solid var(--border);
+  background: linear-gradient(135deg, var(--surface) 0%, var(--card) 100%);
+  border-radius: 20px 20px 0 0;
+}
+
+/* High contrast panel header */
+.high-contrast .a11y-panel h2 {
+  background: var(--text);
+  color: var(--bg);
+  border-bottom-color: var(--text);
+  font-weight: 800;
+}
+
+.a11y-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  padding: 24px 32px;
+}
+
+/* High contrast grid */
+.high-contrast .a11y-grid {
+  background: var(--bg);
+}
+
+/* Enhanced Switch Toggle */
+.switch {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 20px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  min-height: 60px;
+}
+
+/* High contrast switch styling */
+.high-contrast .switch {
+  border-width: 2px;
+  border-color: var(--text);
+  background: var(--bg);
+}
+
+/* Dyslexia-friendly switch styling */
+.dyslexia .switch {
+  letter-spacing: 0.05em;
+  word-spacing: 0.1em;
+}
+
+.switch::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+  transition: left 0.6s;
+}
+
+.switch:hover::before {
+  left: 100%;
+}
+
+/* Disable hover effects when motion is reduced */
+.reduce-motion .switch::before {
+  display: none;
+}
+
+.switch:hover {
+  border-color: var(--primary);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+/* Disable hover effects when motion is reduced */
+.reduce-motion .switch:hover {
+  transform: none;
+}
+
+/* High contrast hover state */
+.high-contrast .switch:hover {
+  border-color: var(--focus);
+  background: var(--surface);
+}
+
+.switch input[type="checkbox"] {
+  appearance: none;
+  width: 48px;
+  height: 24px;
+  background: var(--muted);
+  border-radius: 12px;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  flex-shrink: 0;
+  border: 2px solid transparent;
+}
+
+/* High contrast switch input */
+.high-contrast .switch input[type="checkbox"] {
+  border-color: var(--text);
+  background: var(--surface);
+}
+
+/* .switch input[type="checkbox"]::before {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 20px;
+  height: 20px;
+  background: white;
+  border-radius: 50%;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  display: none;
+} */
+
+/* High contrast switch thumb */
+/* .high-contrast .switch input[type="checkbox"]::before {
+  background: var(--text);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+} */
+
+.switch input[type="checkbox"]:checked {
+  background: var(--primary);
+}
+
+/* High contrast checked state */
+.high-contrast .switch input[type="checkbox"]:checked {
+  background: var(--focus);
+}
+
+.switch input[type="checkbox"]:checked::before {
+  transform: translateX(24px);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* High contrast checked thumb */
+.high-contrast .switch input[type="checkbox"]:checked::before {
+  background: var(--bg);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
+}
+
+/* Disable transitions when motion is reduced */
+.reduce-motion .switch input[type="checkbox"],
+.reduce-motion .switch input[type="checkbox"]::before {
+  transition: none;
+}
+
+.switch span {
+  font-weight: 600;
+  color: var(--text);
+  font-size: 0.95rem;
+  user-select: none;
+  flex: 1;
+}
+
+/* High contrast switch text */
+.high-contrast .switch span {
+  font-weight: 700;
+  color: var(--text);
+}
+
+/* Focus states for switch */
+.switch:focus-within {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+/* High contrast focus states */
+.high-contrast .switch:focus-within {
+  outline: 3px solid var(--text);
+  outline-offset: 3px;
+}
+
+/* Switch label hover effect */
+.switch:hover span {
+  color: var(--text);
+}
+
+/* High contrast label hover */
+.high-contrast .switch:hover span {
+  color: var(--text);
+}
+
+/* Disable label hover effects when motion is reduced */
+.reduce-motion .switch:hover span {
+  color: var(--text);
+}
+
+/* Panel Footer */
+.a11y-panel menu {
+  margin: 0;
+  padding: 20px 32px 24px;
+  border-top: 1px solid var(--border);
+  background: var(--card);
+  border-radius: 0 0 20px 20px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+/* High contrast panel footer */
+.high-contrast .a11y-panel menu {
+  background: var(--text);
+  border-top-color: var(--text);
+}
+
+.a11y-panel .button {
+  padding: 12px 24px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  min-width: 100px;
+  border: 1px solid transparent;
+}
+
+/* High contrast panel buttons */
+.high-contrast .a11y-panel .button {
+  border-width: 2px;
+  font-weight: 700;
+}
+
+/* Dyslexia-friendly panel buttons */
+.dyslexia .a11y-panel .button {
+  letter-spacing: 0.05em;
+  word-spacing: 0.1em;
+}
+
+.a11y-panel .button.ghost {
+  background: transparent;
+  color: var(--muted);
+  border: 1px solid var(--border);
+}
+
+/* High contrast ghost button */
+.high-contrast .a11y-panel .button.ghost {
+  border-color: var(--text);
+  color: var(--text);
+  background: var(--surface);
+}
+
+.a11y-panel .button.ghost:hover {
+  background: var(--surface);
+  color: var(--text);
+  border-color: var(--primary);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* High contrast ghost button hover */
+.high-contrast .a11y-panel .button.ghost:hover {
+  background: var(--text);
+  color: var(--bg);
+  border-color: var(--text);
+}
+
+/* Disable hover effects when motion is reduced */
+.reduce-motion .a11y-panel .button.ghost:hover {
+  transform: none;
+}
+
+/* Focus states for panel buttons */
+.a11y-panel .button:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+/* High contrast focus states */
+.high-contrast .a11y-panel .button:focus-visible {
+  outline: 3px solid var(--text);
+  outline-offset: 3px;
+}
+
+/* Animation Keyframes */
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Responsive adjustments for accessibility panel */
+@media (max-width: 600px) {
+  .a11y-panel {
+    width: 95vw;
+    margin: 20px;
+  }
+
+  .a11y-grid {
+    grid-template-columns: 1fr;
+    padding: 20px 24px;
+    gap: 12px;
+  }
+
+  .a11y-panel h2 {
+    padding: 20px 24px 12px;
+    font-size: 1.3rem;
+  }
+
+  .a11y-panel menu {
+    padding: 16px 24px 20px;
+    flex-direction: column;
+  }
+
+  .a11y-panel .button {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* Footer Styles */
+.site-footer {
+  border-top: 1px solid var(--border);
+  padding-block: 24px;
+  background: color-mix(in oklab, var(--bg) 85%, transparent);
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.footer-grid h3 {
+  margin-top: 0;
+  color: var(--text);
+}
+
+.footer-grid a {
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.footer-grid a:hover {
+  color: var(--text);
+}
+
+.tiny {
+  color: var(--muted);
+  font-size: .85rem;
+  margin-top: 10px;
+}
+
+.socials {
+  display: flex;
+  gap: 10px;
+}
+
+.socials a {
+  width: 38px;
+  height: 38px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface);
+  color: var(--text);
+  font-weight: 900;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.socials a:hover,
+.socials a:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border-color: var(--primary);
+}
+
+/* Responsive adjustments */
+@media (max-width: 960px) {
+  .topbar {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .controls {
+    justify-self: center;
+  }
+
+  .header-menu {
+    right: 50%;
+    transform: translateX(50%) translateY(-10px) scale(0.95);
+  }
+
+  .header-menu:not([hidden]) {
+    transform: translateX(50%) translateY(0) scale(1);
+  }
+}
+
+/* App Store Download Buttons */
+.app-badges {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+  flex-wrap: wrap;
+}
+
+.app-store-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  text-decoration: none;
+  color: var(--text);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  min-width: 140px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* High contrast app store buttons */
+.high-contrast .app-store-btn {
+  border-width: 2px;
+  border-color: var(--text);
+  font-weight: 700;
+}
+
+/* Dyslexia-friendly app store buttons */
+.dyslexia .app-store-btn {
+  letter-spacing: 0.1em;
+  word-spacing: 0.2em;
+}
+
+.app-store-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transition: left 0.6s;
+}
+
+.app-store-btn:hover::before {
+  left: 100%;
+}
+
+/* Disable hover effects when motion is reduced */
+.reduce-motion .app-store-btn::before {
+  display: none;
+}
+
+.app-store-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  border-color: var(--primary);
+  background: var(--card);
+}
+
+/* Disable hover effects when motion is reduced */
+.reduce-motion .app-store-btn:hover {
+  transform: none;
+}
+
+.app-store-btn:active {
+  transform: translateY(0);
+  transition: transform 0.1s ease;
+}
+
+/* Enhanced focus states for accessibility */
+.app-store-btn:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 3px;
+  transform: translateY(-1px);
+}
+
+/* High contrast focus states */
+.high-contrast .app-store-btn:focus-visible {
+  outline: 3px solid var(--text);
+  outline-offset: 4px;
+}
+
+/* Disable focus transform when motion is reduced */
+.reduce-motion .app-store-btn:focus-visible {
+  transform: none;
+}
+
+.app-store-btn .store-icon {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--primary);
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+.app-store-btn .store-icon svg {
+  width: 20px;
+  height: 20px;
+  fill: white;
+}
+
+.high-contrast .app-store-btn .store-icon svg {
+  fill: var(--bg);
+}
+
+.app-store-btn .store-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.app-store-btn .store-text .top-line {
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--muted);
+  margin-bottom: 2px;
+}
+
+.app-store-btn .store-text .bottom-line {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+/* Apple App Store specific styling */
+.app-store-btn.apple .store-icon {
+  background: var(--primary);
+}
+
+.app-store-btn.apple:hover .store-icon {
+  background: var(--brand);
+}
+
+/* Google Play Store specific styling */
+.app-store-btn.google .store-icon {
+  background: var(--brand-2);
+}
+
+.app-store-btn.google:hover .store-icon {
+  background: var(--brand-2);
+}
+
+.high-contrast .app-store-btn .store-icon {
+  background: var(--focus);
+}
+
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  .app-badges {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .app-store-btn {
+    min-width: auto;
+    width: 100%;
+    justify-content: center;
+  }
+}

@@ -1,7 +1,6 @@
-
 /* Simple bilingual i18n for EN/AR with dir switching */
-window.I18N = (function(){
-  const dict = {
+window.I18N = (function () {
+  const dictionary = {
     en: {
       brand: "Refqa",
       nav_home: "Home",
@@ -16,6 +15,7 @@ window.I18N = (function(){
       dyslexia_friendly: "Dyslexia‑friendly",
       reduce_motion: "Reduce motion",
       close: "Close",
+      toggle_theme: "Toggle theme",
       skip_to_content: "Skip to main",
       hero_title: "A smart platform connecting people with disabilities, families, volunteers, and specialists.",
       hero_sub: "Exchange skills, get practical support, and contribute to your community—equally.",
@@ -34,6 +34,7 @@ window.I18N = (function(){
       footer_tag: "Your companion on the journey of giving & inclusion.",
       footer_links: "Links",
       footer_contact: "Contact",
+      follow_us: "Follow us",
       explore_title: "Explore opportunities",
       search: "Search",
       search_ph: "e.g., sign-language meetup",
@@ -54,7 +55,7 @@ window.I18N = (function(){
       email_hint: "We'll never share your email.",
       password: "Password",
       login: "Log in",
-      no_account: "Don’t have an account?",
+      no_account: "Don't have an account?",
       create_one: "Create one",
       signup_title: "Create your account",
       choose_role: "Choose your role",
@@ -94,6 +95,7 @@ window.I18N = (function(){
       dyslexia_friendly: "مناسب لعُسر القراءة",
       reduce_motion: "تقليل الحركة",
       close: "إغلاق",
+      toggle_theme: "تبديل المظهر",
       skip_to_content: "تخطي إلى المحتوى",
       hero_title: "منصة ذكية تربط ذوي الهمم، الأسر، المتطوعين والمختصين في مكان واحد.",
       hero_sub: "تبادل المهارات، واحصل على دعم عملي، وساهم في مجتمعك—بالتساوي.",
@@ -112,6 +114,7 @@ window.I18N = (function(){
       footer_tag: "رفيقك في رحلة العطاء والدمج.",
       footer_links: "روابط",
       footer_contact: "تواصل",
+      follow_us: "تابعنا",
       explore_title: "استكشاف الفرص",
       search: "بحث",
       search_ph: "مثال: لقاء لغة الإشارة",
@@ -136,7 +139,7 @@ window.I18N = (function(){
       create_one: "أنشئ حسابًا",
       signup_title: "إنشاء حساب",
       choose_role: "اختر دورك",
-      role_pwd_desc: "تلقَّ وقدّم المهارات؛ كن مؤثرًا في مجتمعك.",
+      role_pwd_desc: "تلقَّ وقدّم المهارات؛ كن مؤثرًا في مجتمعك.",
       role_family_desc: "اعثر على الإرشاد وشارك خبرتك.",
       role_volunteer_desc: "قدّم وقتك ومهاراتك لقضايا هادفة.",
       role_specialist_desc: "قدّم دعمًا مهنيًا وجلسات.",
@@ -159,47 +162,64 @@ window.I18N = (function(){
     }
   };
 
-  function t(key){ 
-    const lang = getLang();
-    return (dict[lang] && dict[lang][key]) || (dict.en[key] || key);
+  function translate(key) {
+    const currentLanguage = getCurrentLanguage();
+    return (dictionary[currentLanguage] && dictionary[currentLanguage][key]) || (dictionary.en[key] || key);
   }
 
-  function setLang(lang){
-    try{
-      localStorage.setItem("lang", lang);
-    }catch(e){}
-    applyLang();
+  function setLanguage(languageCode) {
+    try {
+      localStorage.setItem("lang", languageCode);
+    } catch (e) {
+      console.log(e);
+    }
+    applyLanguage();
   }
 
-  function getLang(){
-    try{
-      return localStorage.getItem("lang") || (navigator.language || "en").startsWith("ar") ? "ar" : "en";
-    }catch(e){ return "en"; }
+  function getCurrentLanguage() {
+    try {
+      return localStorage.getItem("lang");
+    } catch (e) { return "en"; }
   }
 
-  function applyLang(){
-    const lang = getLang();
-    const root = document.documentElement;
-    root.lang = lang;
-    root.dir = lang === "ar" ? "rtl" : "ltr";
+  function applyLanguage() {
+    const currentLanguage = getCurrentLanguage();
+    const documentRoot = document.documentElement;
+    documentRoot.lang = currentLanguage;
+    documentRoot.dir = currentLanguage === "ar" ? "rtl" : "ltr";
 
-    // Update pressed state
-    document.querySelectorAll(".lang-btn").forEach(btn=>{
-      const pressed = btn.getAttribute("data-lang") === lang;
-      btn.setAttribute("aria-pressed", pressed ? "true" : "false");
+    // Update language button pressed states
+    document.querySelectorAll(".lang-btn").forEach(languageButton => {
+      const isPressed = languageButton.getAttribute("data-lang") === currentLanguage;
+      languageButton.setAttribute("aria-pressed", isPressed ? "true" : "false");
     });
 
     // Translate text content
-    document.querySelectorAll("[data-i18n]").forEach(el=>{
-      const key = el.getAttribute("data-i18n");
-      el.textContent = t(key);
+    document.querySelectorAll("[data-i18n]").forEach(element => {
+      const translationKey = element.getAttribute("data-i18n");
+      if (translationKey && dictionary[currentLanguage] && dictionary[currentLanguage][translationKey]) {
+        element.textContent = dictionary[currentLanguage][translationKey];
+      } else if (translationKey && dictionary.en[translationKey]) {
+        element.textContent = dictionary.en[translationKey];
+      }
     });
+
     // Translate placeholders
-    document.querySelectorAll("[data-i18n-placeholder]").forEach(el=>{
-      const key = el.getAttribute("data-i18n-placeholder");
-      el.setAttribute("placeholder", t(key));
+    document.querySelectorAll("[data-i18n-placeholder]").forEach(element => {
+      const translationKey = element.getAttribute("data-i18n-placeholder");
+      if (translationKey && dictionary[currentLanguage] && dictionary[currentLanguage][translationKey]) {
+        element.setAttribute("placeholder", dictionary[currentLanguage][translationKey]);
+      } else if (translationKey && dictionary.en[translationKey]) {
+        element.setAttribute("placeholder", dictionary.en[translationKey]);
+      }
     });
   }
 
-  return { t, setLang, getLang, applyLang, dict };
+  return {
+    t: translate,
+    setLanguage,
+    getCurrentLanguage,
+    applyLanguage,
+    dictionary
+  };
 })();

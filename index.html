@@ -1,141 +1,209 @@
-    <!doctype html>
-    <html lang="en" dir="ltr">
-    <head>
-      <meta charset="utf-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1" />
-      <meta name="color-scheme" content="light dark" />
-      <title>Refqa — Inclusive Community Platform</title>
-      <link rel="stylesheet" href="css/styles.css" />
-      <link rel="icon" href="data:,">
-    </head>
-    <body data-page="home">
-      <a class="skip-link" href="#main">{} i18n('skip_to_content') {}</a>
-      <header class="site-header" role="banner">
-        <div class="topbar">
-          <div class="brand">
-            <a href="index.html" class="brand-link" aria-label="Refqa Home">
-              <span class="logo" aria-hidden="true">🤝</span>
-              <span class="brand-name" data-i18n="brand">Refqa</span>
-            </a>
-          </div>
-          <nav aria-label="Primary" class="primary-nav">
-            <a href="index.html" data-i18n="nav_home" class="nav-link"></a>
-            <a href="explore.html" data-i18n="nav_explore" class="nav-link"></a>
-            <a href="about.html" data-i18n="nav_about" class="nav-link"></a>
-            <a href="login.html" data-i18n="nav_login" class="button ghost"></a>
-            <a href="signup.html" data-i18n="nav_signup" class="button solid"></a>
-          </nav>
-          <div class="controls">
-            <div class="lang-switch" role="group" aria-label="Language">
-              <button class="lang-btn" data-lang="en" aria-pressed="true">EN</button>
-              <button class="lang-btn" data-lang="ar" aria-pressed="false">AR</button>
-            </div>
-            <button id="accessibility-trigger" class="icon-btn" aria-haspopup="dialog" aria-controls="accessibility-panel" aria-expanded="false" title="Accessibility">
-              <span aria-hidden="true">♿</span><span class="sr-only" data-i18n="accessibility">Accessibility</span>
-            </button>
+<!doctype html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light dark" />
+  <title>Refqa — Inclusive Community Platform</title>
+  <link rel="stylesheet" href="css/themes.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="icon" href="data:,">
+</head>
+
+<body data-page="home">
+  <a class="skip-link" href="#main">{} i18n('skip_to_content') {}</a>
+  <header class="site-header" role="banner">
+    <div class="topbar">
+      <div class="brand">
+        <a href="index.html" class="brand-link" aria-label="Refqa Home">
+          <img src="img/refqa logo.png" class="logo" alt="Refqa Logo" aria-hidden="true">
+          <span class="brand-name" data-i18n="brand">Refqa</span>
+        </a>
+      </div>
+      <nav aria-label="Primary" class="primary-nav">
+        <a href="index.html" data-i18n="nav_home" class="nav-link"></a>
+        <a href="./pages/explore.html" data-i18n="nav_explore" class="nav-link"></a>
+        <a href="./pages/about.html" data-i18n="nav_about" class="nav-link"></a>
+        <a href="./pages/login.html" data-i18n="nav_login" class="button ghost"></a>
+        <!-- <a href="./pages/signup.html" data-i18n="nav_signup" class="button solid"></a> -->
+      </nav>
+      <div class="controls">
+        <a href="#" class="button solid" data-i18n="download_app" aria-label="Download the Refqa app">Download</a>
+        <button id="header-kebab" class="kebab-btn" aria-haspopup="menu" aria-expanded="false"
+          aria-controls="header-menu" title="More">⋮</button>
+      </div>
+      <div id="header-menu" class="header-menu" hidden role="menu">
+        <div class="menu-section" role="group" aria-label="Language">
+          <div class="lang-switch" role="group" aria-label="Language">
+            <button class="lang-btn" data-lang="en" aria-pressed="true">EN</button>
+            <button class="lang-btn" data-lang="ar" aria-pressed="false">AR</button>
           </div>
         </div>
-      </header>
-
-      <dialog id="accessibility-panel" class="a11y-panel" aria-labelledby="a11y-title">
-        <form method="dialog">
-          <h2 id="a11y-title" data-i18n="a11y_title">Accessibility Options</h2>
-          <div class="a11y-grid">
-            <label class="switch">
-              <input type="checkbox" id="toggle-contrast" />
-              <span data-i18n="high_contrast">High contrast</span>
-            </label>
-            <label class="switch">
-              <input type="checkbox" id="toggle-large-text" />
-              <span data-i18n="large_text">Larger text</span>
-            </label>
-            <label class="switch">
-              <input type="checkbox" id="toggle-dyslexia" />
-              <span data-i18n="dyslexia_friendly">Dyslexia‑friendly</span>
-            </label>
-            <label class="switch">
-              <input type="checkbox" id="toggle-reduce-motion" />
-              <span data-i18n="reduce_motion">Reduce motion</span>
-            </label>
-          </div>
-          <menu>
-            <button value="cancel" class="button ghost" data-i18n="close">Close</button>
-          </menu>
-        </form>
-      </dialog>
-
-      <main id="main" tabindex="-1">
-
-<section class="hero">
-  <div class="hero-content">
-    <h1 data-i18n="hero_title">A smart platform connecting people with disabilities, families, volunteers, and specialists.</h1>
-    <p class="lead" data-i18n="hero_sub">Exchange skills, get practical support, and contribute to your community—equally.</p>
-    <div class="cta-row">
-      <a class="button solid" href="signup.html" data-i18n="get_started">Get started</a>
-      <a class="button ghost" href="explore.html" data-i18n="explore_opportunities">Explore opportunities</a>
+        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme" title="Toggle theme">
+          <span class="icon" aria-hidden="true">🌙</span>
+          <span class="sr-only" data-i18n="toggle_theme">Toggle theme</span>
+        </button>
+        <div class="menu-section">
+          <button id="accessibility-trigger" class="menu-item" aria-haspopup="dialog"
+            aria-controls="accessibility-panel" aria-expanded="false">
+            <span data-i18n="accessibility">Accessibility</span>
+          </button>
+        </div>
+      </div>
     </div>
-  </div>
-  <div class="hero-visual" aria-hidden="true">
-    <div class="circle"></div><div class="circle"></div><div class="circle"></div>
-  </div>
-</section>
+  </header>
 
-<section class="features" aria-label="Key features">
-  <div class="feature-card">
-    <div class="icon" aria-hidden="true">🤝</div>
-    <h3 data-i18n="feat_matchmaking">Inclusive matchmaking</h3>
-    <p data-i18n="feat_matchmaking_desc">Smart matching between needs and skills across all roles.</p>
-  </div>
-  <div class="feature-card">
-    <div class="icon" aria-hidden="true">🎓</div>
-    <h3 data-i18n="feat_learning">Guides & learning</h3>
-    <p data-i18n="feat_learning_desc">Practical content for families and community members.</p>
-  </div>
-  <div class="feature-card">
-    <div class="icon" aria-hidden="true">🧑‍⚕️</div>
-    <h3 data-i18n="feat_specialists">Specialists</h3>
-    <p data-i18n="feat_specialists_desc">Verified therapists, doctors, and trainers offering sessions.</p>
-  </div>
-  <div class="feature-card">
-    <div class="icon" aria-hidden="true">📣</div>
-    <h3 data-i18n="feat_events">Events & initiatives</h3>
-    <p data-i18n="feat_events_desc">Workshops and activities promoting inclusion and contribution.</p>
-  </div>
-</section>
+  <dialog id="accessibility-panel" class="a11y-panel" aria-labelledby="a11y-title">
+    <form method="dialog">
+      <h2 id="a11y-title" data-i18n="a11y_title">Accessibility Options</h2>
+      <div class="a11y-grid">
+        <label class="switch">
+          <input type="checkbox" id="toggle-contrast" />
+          <span data-i18n="high_contrast">High contrast</span>
+        </label>
+        <label class="switch">
+          <input type="checkbox" id="toggle-large-text" />
+          <span data-i18n="large_text">Larger text</span>
+        </label>
+        <label class="switch">
+          <input type="checkbox" id="toggle-dyslexia" />
+          <span data-i18n="dyslexia_friendly">Dyslexia‑friendly</span>
+        </label>
+        <label class="switch">
+          <input type="checkbox" id="toggle-reduce-motion" />
+          <span data-i18n="reduce_motion">Reduce motion</span>
+        </label>
+      </div>
+      <menu>
+        <button value="cancel" class="button ghost" data-i18n="close">Close</button>
+      </menu>
+    </form>
+  </dialog>
 
-<section class="callout" role="region" aria-label="Mission">
-  <h2 data-i18n="mission_title">Our mission</h2>
-  <p data-i18n="mission_desc">Enable people with disabilities to give as much as they receive—through skills exchange, mentorship, and community support.</p>
-</section>
+  <main id="main" tabindex="-1">
 
-      </main>
-
-      <div id="sr-status" class="sr-only" role="status" aria-live="polite"></div>
-
-      <footer class="site-footer">
-        <div class="footer-grid">
-          <div>
-            <h3 data-i18n="brand">Refqa</h3>
-            <p data-i18n="footer_tag">Your companion on the journey of giving & inclusion.</p>
-          </div>
-          <div>
-            <h3 data-i18n="footer_links">Links</h3>
-            <ul>
-              <li><a href="about.html" data-i18n="nav_about"></a></li>
-              <li><a href="explore.html" data-i18n="nav_explore"></a></li>
-              <li><a href="login.html" data-i18n="nav_login"></a></li>
-              <li><a href="signup.html" data-i18n="nav_signup"></a></li>
-            </ul>
-          </div>
-          <div>
-            <h3 data-i18n="footer_contact">Contact</h3>
-            <p><a href="mailto:hello@refqa.org">hello@refqa.org</a></p>
-          </div>
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-content">
+        <h1 data-i18n="hero_title">
+          A smart platform connecting people with disabilities, families, volunteers, and specialists.
+        </h1>
+        <p class="lead" data-i18n="hero_sub">
+          Exchange skills, get practical support, and contribute to your community equally.
+        </p>
+        <div class="cta-row">
+          <a class="button solid" href="signup.html" data-i18n="get_started">Get started</a>
+          <a class="button ghost" href="explore.html" data-i18n="explore_opportunities">Explore opportunities</a>
         </div>
-        <div class="tiny">© <span id="year"></span> Refqa</div>
-      </footer>
+      </div>
+    </section>
 
-      <script src="js/i18n.js"></script>
-      <script src="js/app.js"></script>
-    </body>
-    </html>
+    <section class="features" aria-label="Key features">
+      <div class="feature-card">
+        <div class="icon" aria-hidden="true">🤝</div>
+        <h3 data-i18n="feat_matchmaking">Inclusive matchmaking</h3>
+        <p data-i18n="feat_matchmaking_desc">Smart matching between needs and skills across all roles.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon" aria-hidden="true">🎓</div>
+        <h3 data-i18n="feat_learning">Guides & learning</h3>
+        <p data-i18n="feat_learning_desc">Practical content for families and community members.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon" aria-hidden="true">🧑‍⚕️</div>
+        <h3 data-i18n="feat_specialists">Specialists</h3>
+        <p data-i18n="feat_specialists_desc">Verified therapists, doctors, and trainers offering sessions.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon" aria-hidden="true">📣</div>
+        <h3 data-i18n="feat_events">Events & initiatives</h3>
+        <p data-i18n="feat_events_desc">Workshops and activities promoting inclusion and contribution.</p>
+      </div>
+    </section>
+
+    <section class="callout" role="region" aria-label="Mission">
+      <h2 data-i18n="mission_title">Our mission</h2>
+      <p data-i18n="mission_desc">Enable people with disabilities to give as much as they receive—through skills
+        exchange, mentorship, and community support.</p>
+    </section>
+
+  </main>
+
+  <div id="sr-status" class="sr-only" role="status" aria-live="polite"></div>
+
+  <footer class="site-footer">
+    <div class="footer-grid">
+      <div>
+        <h3 data-i18n="brand">Refqa</h3>
+        <p data-i18n="footer_tag">Your companion on the journey of giving & inclusion.</p>
+        <div class="app-badges">
+          <a href="#" class="app-store-btn apple" aria-label="Download on the App Store">
+            <div class="store-icon">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" />
+              </svg>
+            </div>
+            <div class="store-text">
+              <div class="top-line">Available on the</div>
+              <div class="bottom-line">App Store</div>
+            </div>
+          </a>
+          <a href="#" class="app-store-btn google" aria-label="Get it on Google Play">
+            <div class="store-icon">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z" />
+              </svg>
+            </div>
+            <div class="store-text">
+              <div class="top-line">Get it on</div>
+              <div class="bottom-line">Google Play</div>
+            </div>
+          </a>
+        </div>
+      </div>
+      <div>
+        <h3 data-i18n="footer_contact">Contact</h3>
+        <p><a href="mailto:refqatogether@gmail.com">refqatogether@gmail.com</a></p>
+        <h3 data-i18n="follow_us">Follow us</h3>
+        <div class="socials">
+          <a href="#" aria-label="LinkedIn">
+            <lord-icon src="https://cdn.lordicon.com/qgebwute.json" trigger="hover" stroke="bold"
+              colors="primary:#4a90e2" style="width:24px;height:24px">
+            </lord-icon>
+          </a>
+          <a href="#" aria-label="X">
+            <lord-icon src="https://cdn.lordicon.com/yizwahhw.json" trigger="hover" stroke="bold"
+              colors="primary:#4a90e2" style="width:24px;height:24px">
+            </lord-icon>
+          </a>
+          <a href="#" aria-label="YouTube">
+            <lord-icon src="https://cdn.lordicon.com/lyjuidpq.json" trigger="hover" stroke="bold"
+              colors="primary:#4a90e2,secondary:#5d6eab" style="width:24px;height:24px">
+            </lord-icon>
+          </a>
+          <a href="#" aria-label="Instagram">
+            <lord-icon src="https://cdn.lordicon.com/tgyvxauj.json" trigger="hover" stroke="bold"
+              colors="primary:#4a90e2,secondary:#5d6eab" style="width:24px;height:24px">
+            </lord-icon>
+          </a>
+          <a href="#" aria-label="Facebook">
+            <lord-icon src="https://cdn.lordicon.com/bfoumeno.json" trigger="hover" stroke="bold"
+              colors="primary:#4a90e2" style="width:24px;height:24px">
+            </lord-icon>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="tiny">© <span id="year"></span> Refqa</div>
+  </footer>
+
+  <script src="js/i18n.js"></script>
+  <script src="js/app.js"></script>
+  <script src="https://cdn.lordicon.com/lordicon.js"></script>
+</body>
+
+</html>

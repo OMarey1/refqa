@@ -1,0 +1,81 @@
+/* Theme Variables */
+:root {
+  /* Dark Theme (Default) */
+  --bg: #0b1220;
+  --surface: #11192a;
+  --card: #121c30;
+  --text: #e5eefc;
+  --muted: #a6b3cd;
+  --brand: #6aa7ff;
+  --brand-2: #4de1c7;
+  --primary: #6aa7ff;
+  --border: #23314c;
+  --focus: #ffd166;
+  --warn: #ff6b6b;
+  
+  /* Common properties */
+  --radius: 16px;
+  --shadow: 0 10px 30px rgba(0,0,0,.35);
+  --font: system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji","Segoe UI Emoji";
+  --size: 1rem;
+  --line: 1.55;
+  
+  /* Smooth transitions for theme switching */
+  --transition-speed: 0.3s;
+}
+
+/* Light Theme */
+[data-theme="light"] {
+  --bg: #ffffff;
+  --surface: #f8fafc;
+  --card: #ffffff;
+  --text: #1e293b;
+  --muted: #64748b;
+  --brand: #3b82f6;
+  --brand-2: #06b6d4;
+  --primary: #3b82f6;
+  --border: #e2e8f0;
+  --focus: #f59e0b;
+  --warn: #ef4444;
+  --shadow: 0 10px 30px rgba(0,0,0,.1);
+}
+
+/* Smooth transitions for theme switching */
+* {
+  transition: background-color var(--transition-speed) ease, 
+              color var(--transition-speed) ease, 
+              border-color var(--transition-speed) ease,
+              box-shadow var(--transition-speed) ease;
+}
+
+/* High contrast mode */
+.high-contrast {
+  --bg: #000;
+  --surface: #000;
+  --card: #000;
+  --text: #fff;
+  --muted: #fff;
+  --brand: #fff;
+  --brand-2: #fff;
+  --border: #fff;
+  --focus: #ff0;
+}
+
+/* Larger text */
+.large-text {
+  --size: 1.125rem;
+  --line: 1.7;
+}
+
+/* Dyslexia-friendly */
+.dyslexia {
+  letter-spacing: .6px;
+  word-spacing: 2px;
+  line-height: 1.8;
+}
+
+/* Reduce motion */
+.reduce-motion * {
+  animation: none !important;
+  transition: none !important;
+}
